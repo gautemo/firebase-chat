@@ -11,3 +11,5 @@ In this step you will learn to host your webpage to firbase.
 * `$ firebase init`
 * `$ firebase deploy`
 
+## DOCS
+[Firebase Hosting](https://firebase.google.com/docs/hosting/)
