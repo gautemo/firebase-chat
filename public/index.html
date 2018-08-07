@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Awsome Chat</title>
+    <meta name="author" content="Gaute Meek Olsen">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>Awsome Chat</header>
+        <div class="chat-container">
+            <div>
+                <div class="msg" v-for="message in messages">
+                    <img v-bind:src="message.profilepic" />
+                    <div>
+                        <div class="msg-name">{{message.name}}</div>
+                        <div class="msg-message">{{message.message}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="add-msg">
+            <input type="text" v-model="newMessage" placeholder="Say hello..." @keyup.enter="addMsg()" autofocus/>
+            <button type="button" @click="addMsg()">Add</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

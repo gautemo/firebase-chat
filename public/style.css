@@ -1,0 +1,94 @@
+:root{
+    --chat-container-color: #5051604d;
+    --chat-buble-color: #79a3d0;
+    --chat-input-color: #AEBD384d;
+    --chat-button-color: #598234;
+}
+
+body{
+    margin: 0;
+    font-family: 'Ranga', cursive;
+    background-image: url('images/background.png');
+    background-repeat: no-repeat;
+}
+
+#app{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+header{
+    flex: 1;
+    padding: 5px 25px;
+    font-size: 5em;
+    font-weight: bold;
+}
+
+.chat-container{
+    flex: 8;
+    border-radius: 40px 40px 0 0;
+    background-color: var(--chat-container-color);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+}
+
+.chat-container > div{
+    padding: 30px;
+}
+
+.msg{
+    background-color: var(--chat-buble-color);
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    max-width: 500px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.msg img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.msg-name{
+    font-size: 2em;
+}
+
+.msg-message{
+    font-size: 1.5em;
+}
+
+.add-msg{
+    flex: 2;
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.add-msg input{
+    flex: 6;
+    font-family: inherit;
+    font-size: 2.5em;
+    padding: 10px;
+    border-radius: 0 0 0 40px;
+    background-color: var(--chat-input-color);
+    outline: none;
+    border: none;
+}
+
+.add-msg button{
+    flex: 1;
+    font-family: inherit;
+    font-size: 2.5em;
+    border-radius: 0 0 40px 0;
+    background-color: var(--chat-button-color);
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
