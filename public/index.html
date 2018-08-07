@@ -14,10 +14,10 @@
 
 <body>
     <div id="app">
-        <header>Awsome Chat</header>
+        <header>Awsome Chat <button onclick="signOut()" class="signout" type="button">Sign out</button></header>
         <div class="chat-container">
             <div>
-                <div class="msg" v-for="message in messages">
+                <div class="msg" v-bind:class="isMine(message.name)" v-for="message in messages">
                     <img v-bind:src="message.profilepic" />
                     <div>
                         <div class="msg-name">{{message.name}}</div>
@@ -27,11 +27,11 @@
             </div>
         </div>
         <div class="add-msg">
-            <input type="text" v-model="newMessage" placeholder="Say hello..." @keyup.enter="addMsg()" autofocus/>
-            <button type="button" @click="addMsg()">Add</button>
+            <input class="add-input" type="text" v-model="newMessage" placeholder="Say hello..." @keyup.enter="addMsg()" autofocus/>
+            <button class="add-btn" v-if="userIsSignedIn" type="button" @click="addMsg()">Add</button>
+            <div v-if="!userIsSignedIn" id="firebaseui-auth-container"></div>
         </div>
     </div>
-
 
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <script>
@@ -46,6 +46,8 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
     <script src="app.js"></script>
 </body>
 
