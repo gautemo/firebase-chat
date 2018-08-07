@@ -45,7 +45,7 @@ header{
     display: flex;
     padding: 5px;
     align-items: center;
-    max-width: 500px;
+    width: 500px;
     margin-bottom: 10px;
     flex-shrink: 0;
 }
