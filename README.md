@@ -32,5 +32,8 @@ messagesRef.orderBy('created_at').onSnapshot(function (snapshot){
 })
 ```
 
+## DOCS
+[Firebase Cloud Firestore](https://firebase.google.com/docs/firestore/quickstart)
+
 ## Firebase Realtime database
 Alternativly you could check out Firebase Realtime database. There are some [differences](https://firebase.google.com/docs/database/rtdb-vs-firestore). But Cloud Firestore is Firebase's new flagship database.
