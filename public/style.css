@@ -45,7 +45,7 @@ header{
     display: flex;
     padding: 5px;
     align-items: center;
-    max-width: 500px;
+    width: 500px;
     margin-bottom: 10px;
     flex-shrink: 0;
 }
@@ -71,7 +71,7 @@ header{
     padding-bottom: 5px;
 }
 
-.add-msg input{
+.add-msg .add-input{
     flex: 6;
     font-family: inherit;
     font-size: 2.5em;
@@ -82,7 +82,7 @@ header{
     border: none;
 }
 
-.add-msg button{
+.add-msg .add-btn{
     flex: 1;
     font-family: inherit;
     font-size: 2.5em;
