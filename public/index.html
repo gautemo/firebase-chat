@@ -14,7 +14,7 @@
 
 <body>
     <div id="app">
-        <header>Awsome Chat <button onclick="signOut()" class="signout" type="button">Sign out</button></header>
+        <header>Awsome Chat <button onclick="signOut()" class="signout" type="button" v-if="userIsSignedIn">Sign out</button></header>
         <div v-if="userIsSignedIn" class="chat-container">
             <div>
                 <div class="msg" v-bind:class="isMine(message.name)" v-for="message in messages">
