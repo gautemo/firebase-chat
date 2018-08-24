@@ -21,9 +21,11 @@ const ui = new firebaseui.auth.AuthUI(auth);
 
 auth.onAuthStateChanged(user => {
     if (user !== null) {
+        document.querySelector('#firebaseui-auth-container').style.display = 'none';
         app.userIsSignedIn = true;
         snapShotMessages();
     } else {
+        document.querySelector('#firebaseui-auth-container').style.display = 'block';
         app.userIsSignedIn = false;
     }
 })
@@ -50,7 +52,7 @@ function signOut() {
     });
 }
 ```
-`<div v-if="!userIsSignedIn" id="firebaseui-auth-container"></div>`
+`<div id="firebaseui-auth-container"></div>`
 ```
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
