@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         <header>Awsome Chat <button onclick="signOut()" class="signout" type="button">Sign out</button></header>
-        <div class="chat-container">
+        <div v-if="userIsSignedIn" class="chat-container">
             <div>
                 <div class="msg" v-bind:class="isMine(message.name)" v-for="message in messages">
                     <img v-bind:src="message.profilepic" />
@@ -26,11 +26,11 @@
                 </div>
             </div>
         </div>
-        <div class="add-msg">
+        <div v-if="userIsSignedIn" class="add-msg">
             <input class="add-input" type="text" v-model="newMessage" placeholder="Say hello..." @keyup.enter="addMsg()" autofocus/>
-            <button class="add-btn" v-if="userIsSignedIn" type="button" @click="addMsg()">Add</button>
-            <div v-if="!userIsSignedIn" id="firebaseui-auth-container"></div>
+            <button class="add-btn" type="button" @click="addMsg()">Add</button>
         </div>
+        <div id="firebaseui-auth-container"></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>

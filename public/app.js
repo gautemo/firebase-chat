@@ -48,9 +48,11 @@ const ui = new firebaseui.auth.AuthUI(auth);
 
 auth.onAuthStateChanged(user => {
     if (user !== null) {
+        document.querySelector('#firebaseui-auth-container').style.display = 'none';
         app.userIsSignedIn = true;
         snapShotMessages();
     } else {
+        document.querySelector('#firebaseui-auth-container').style.display = 'block';
         app.userIsSignedIn = false;
     }
 })
