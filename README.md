@@ -5,6 +5,22 @@ Now it's time to add authentication
 
 ## TODO
 * Firebase console > Authentication > Set up sign-in method
+`<div id="firebaseui-auth-container"></div>`
+`<button onclick="signOut()" class="signout signed-in-show" type="button">Sign out</button>`
+```
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+```
+Add `signed-in-show` class to elements that should now be shown during signed out state
+```
+.signout{
+    float: right;
+}
+
+.hide{
+    display: none;
+}
+```
 ```
 function snapShotMessages(){
     messagesRef.orderBy('created_at').onSnapshot(function (snapshot) {
@@ -22,11 +38,17 @@ const ui = new firebaseui.auth.AuthUI(auth);
 auth.onAuthStateChanged(user => {
     if (user !== null) {
         document.querySelector('#firebaseui-auth-container').style.display = 'none';
-        app.userIsSignedIn = true;
+        const signedInShow = document.querySelectorAll('.signed-in-show');
+        signedInShow.forEach(function(el) {
+            el.classList.remove('hide');
+        });
         snapShotMessages();
     } else {
         document.querySelector('#firebaseui-auth-container').style.display = 'block';
-        app.userIsSignedIn = false;
+        const signedInShow = document.querySelectorAll('.signed-in-show');
+        signedInShow.forEach(function(el) {
+            el.classList.add('hide');
+        });
     }
 })
 
@@ -51,11 +73,6 @@ function signOut() {
         console.error('Sign Out Error', error);
     });
 }
-```
-`<div id="firebaseui-auth-container"></div>`
-```
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 ```
 * Firebase console > Database > Rules `allow read, write: if request.auth.uid != null;`
 
