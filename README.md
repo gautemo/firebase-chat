@@ -5,8 +5,12 @@ Now it's time to add authentication
 
 ## TODO
 * Firebase console > Authentication > Set up sign-in method
-```<div id="firebaseui-auth-container"></div>```
-```<button onclick="signOut()" class="signout signed-in-show" type="button">Sign out</button>```
+```
+<div id="firebaseui-auth-container"></div>
+```
+```
+<button onclick="signOut()" class="signout signed-in-show" type="button">Sign out</button>
+```
 ```
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
