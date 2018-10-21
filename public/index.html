@@ -15,10 +15,10 @@
 
 <body>
     <div id="app">
-        <header>Awsome Chat <button onclick="signOut()" class="signout" type="button" v-if="userIsSignedIn">Sign out</button></header>
-        <div v-if="userIsSignedIn" class="chat-container">
+        <header>Awsome Chat <button onclick="signOut()" class="signout signed-in-show" type="button">Sign out</button></header>
+        <div class="chat-container signed-in-show">
             <div>
-                <div class="msg" v-bind:class="isMine(message.name)" v-for="message in messages">
+                <div class="msg" v-bind:class="isMine(message.user_id)" v-for="message in messages">
                     <img v-bind:src="message.profilepic" />
                     <div>
                         <div class="msg-name">{{message.name}}</div>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="userIsSignedIn" class="add-msg">
+        <div class="add-msg signed-in-show">
             <input class="add-input" type="text" v-model="newMessage" placeholder="Say hello..." @keyup.enter="addMsg()" autofocus/>
             <button class="add-btn" type="button" @click="addMsg()">Add</button>
         </div>

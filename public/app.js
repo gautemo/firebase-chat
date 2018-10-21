@@ -5,18 +5,17 @@ const app = new Vue({
     el: '#app',
     data: {
         messages: [],
-        newMessage: '',
-        userIsSignedIn: false
+        newMessage: ''
     },
     methods: {
         addMsg: function () {
-            if (!this.userIsSignedIn) return;
             const user = firebase.auth().currentUser;
             const message = {
                 profilepic: user.photoURL ? user.photoURL : 'images/anonym.png',
                 name: user.displayName,
                 message: this.newMessage,
-                created_at: new Date().getTime()
+                created_at: new Date().getTime(),
+                user_id: user.uid
             }
             messagesRef.add(message)
                 .then(function (docRef) {
@@ -27,8 +26,8 @@ const app = new Vue({
                 });
             this.newMessage = '';
         },
-        isMine: function (name) {
-            return name === firebase.auth().currentUser.displayName ? 'mine' : '';
+        isMine: function (id) {
+            return id === firebase.auth().currentUser.uid ? 'mine' : '';
         }
     }
 });
@@ -36,8 +35,16 @@ const app = new Vue({
 function snapShotMessages() {
     messagesRef.orderBy('created_at').onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
+            const msg = change.doc.data();
+            msg.id = change.doc.id;
             if (change.type === 'added') {
-                app.messages.push(change.doc.data());
+                app.messages.push(msg);
+            }
+            if (change.type === 'modified') {
+                app.messages = app.messages.map(m => {
+                    if(m.id === msg.id) return msg;
+                    return m;
+                })
             }
         })
     })
@@ -49,11 +56,17 @@ const ui = new firebaseui.auth.AuthUI(auth);
 auth.onAuthStateChanged(user => {
     if (user !== null) {
         document.querySelector('#firebaseui-auth-container').style.display = 'none';
-        app.userIsSignedIn = true;
+        const signedInShow = document.querySelectorAll('.signed-in-show');
+        signedInShow.forEach(function(el) {
+            el.classList.remove('hide');
+        });
         snapShotMessages();
     } else {
         document.querySelector('#firebaseui-auth-container').style.display = 'block';
-        app.userIsSignedIn = false;
+        const signedInShow = document.querySelectorAll('.signed-in-show');
+        signedInShow.forEach(function(el) {
+            el.classList.add('hide');
+        });
     }
 })
 

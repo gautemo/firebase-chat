@@ -111,6 +111,10 @@ header{
     float: right;
 }
 
+.hide{
+    display: none;
+}
+
 @media screen and (max-width: 800px){
     #app{
         padding: 0 15px;
